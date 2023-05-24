@@ -1,0 +1,68 @@
+<div>
+    <p-fieldset legend="POR HORAS" [toggleable]="true">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Hora</th>
+                    <th>Temperatura</th>
+                    <th>Sensación térmica</th>
+                    <th>Humedad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of datos[0].prediccion.dia[0].temperatura.dato; let i = index">
+                    <td>{{item.hora}} h</td>
+                    <td>{{item.value}} ºC
+                        <mat-icon matTooltip="{{ item.value }} °C" [ngClass]="{
+                                'red-icon': item.value > 20,
+                                'blue-icon': item.value < 20
+                              }">
+                            wb_sunny
+                        </mat-icon>
+                    </td>
+                    <td> {{ datos[0].prediccion.dia[0].sensTermica.dato[i].value }} ºC </td>
+                    <td>{{ datos[0].prediccion.dia[0].humedadRelativa.dato[i].value }} %</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Rango horario</th>
+                    <th>Prob. lluvia</th>
+                    <th>Prob. nieve</th>
+                    <th>Dirección / Velc(km/h)</th>
+                    <th>Estado del cielo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of datos[0].prediccion.dia[0].probPrecipitacion; let i = index">
+                    <td>{{ item.periodo }}</td>
+
+                    <td [ngClass]="{'red-icon': item.value > 0 }">
+                        {{ item.value }}%
+                    </td>
+
+                    <td [ngClass]="{'blue-icon': item.value > 0 }"> {{ datos[0].prediccion.dia[0].cotaNieveProv[i].value
+                        ?
+                        datos[0].prediccion.dia[0].cotaNieveProv[i].value + '%' : '0%' }} </td>
+
+                    <td> {{ datos[0].prediccion.dia[0].viento[i].direccion ?
+                        datos[0].prediccion.dia[0].viento[i].direccion : '' }}__{{
+                        datos[0].prediccion.dia[0].viento[i].velocidad }}</td>
+
+                    <td> {{ datos[0].prediccion.dia[0].estadoCielo[i].descripcion ?
+                        datos[0].prediccion.dia[0].estadoCielo[i].descripcion : '' }}__
+                        {{datos[0].prediccion.dia[0].estadoCielo[i].value ?
+                        datos[0].prediccion.dia[0].estadoCielo[i].value : '0'}}% </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </p-fieldset>
+</div>

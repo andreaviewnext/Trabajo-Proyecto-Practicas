@@ -1,0 +1,41 @@
+body {
+    background-color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  h1 {
+    color: rgb(103, 99, 96);
+    text-align: center;
+  }
+  
+  h3 {
+    text-align: center;
+  }
+  
+  table {
+    border-collapse: separate;
+    border-spacing: 10px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  
+  .red-icon {
+    color: red;
+  }
+  
+  .blue-icon {
+    color: blue;
+  }
+  
+  .columnas {
+    column-count: 2;
+    column-gap: 10px;
+  }

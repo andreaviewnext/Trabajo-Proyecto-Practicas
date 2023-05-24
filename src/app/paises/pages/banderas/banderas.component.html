@@ -1,0 +1,33 @@
+<body>
+    <br>
+    <h1 class="text-center">BANDERAS</h1>
+    <br>
+    <div class="row" *ngIf="!informacion">
+        <div *ngFor="let item of pais; let i = index " class="col">
+            <img [src]="item.flags.png" class="img-fluid small-image" alt="{{ item.name }}"
+                (click)="mostrarInformacion(item)" />
+        </div>
+    </div>
+
+    <div *ngIf="informacion">
+        <p-button label=" Regresar" styleClass="p-button-raised " (click)="volverBanderas()"></p-button>
+        <br><br>
+        <ul>
+            <img [src]="paisMostrado.flags.png" class="small-image center-image">
+            <li class="bold-uppercase">nombre: {{paisMostrado.name.common}}</li>
+            <li class="bold-uppercase">capital: {{paisMostrado.capital}}</li>
+            <li class="bold-uppercase">continente: {{paisMostrado.region}}</li>
+            <li class="bold-uppercase">geografía: {{paisMostrado.subregion}}</li>
+            <li class="bold-uppercase">numero de habitantes: {{paisMostrado.population}}</li>
+            <li class="bold-uppercase">idioma:</li>
+            <pre class="json-output">{{paisMostrado.languages | json}}</pre>
+            <li class="bold-uppercase">fronteras:</li>
+            <pre class="json-output">{{paisMostrado.borders | json}}</pre>
+            <li class="bold-uppercase">coordenadas: latitud {{paisMostrado.latlng[0]}} y longitud {{paisMostrado.latlng[1]}}</li>
+        </ul>
+        <br><br>
+
+    </div>
+
+
+</body>

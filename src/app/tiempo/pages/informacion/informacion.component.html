@@ -1,0 +1,87 @@
+<body>
+    <div style="color: aliceblue;">
+        <h1>{{ datos[0].nombre}}, {{datos[0].provincia}}</h1>
+        <p-button label="Volver" (click)="goBack()" styleClass="p-button-secondary"></p-button>
+        <hr>
+    </div>
+
+
+    <div style="column-count:2;">
+        <h3> TEMP. MÁXIMA </h3>
+        <h3>
+            <mat-icon matTooltip="{{ datos[0].prediccion.dia[i].temperatura.maxima }} °C" [ngClass]="{
+              'red-icon': datos[0].prediccion.dia[i].temperatura.maxima
+            }">
+                thermostat
+            </mat-icon>
+            {{ datos[0].prediccion.dia[i].temperatura.maxima }} ºC
+        </h3>
+
+        <h3> TEMP. MÍNIMA </h3>
+        <h3>
+            <mat-icon matTooltip="{{ datos[0].prediccion.dia[i].temperatura.minima }} °C" [ngClass]="{
+              'blue-icon': datos[0].prediccion.dia[i].temperatura.minima 
+            }">
+                thermostat
+            </mat-icon>
+            {{ datos[0].prediccion.dia[i].temperatura.minima }} ºC
+        </h3>
+    </div>
+    <br>
+
+    <div style="column-count:2;">
+        <h3> PROB. PRECIPITACIÓN </h3>
+        <h3>
+            <mat-icon>umbrella</mat-icon>
+            {{ datos[0].prediccion.dia[i].probPrecipitacion[0].value }}
+        </h3>
+
+        <h3> PROB. COTA DE NIEVE </h3>
+        <h3>
+            <mat-icon>ac_unit</mat-icon>
+            {{ datos[0].prediccion.dia[i].cotaNieveProv[0].value ? datos[0].prediccion.dia[i].cotaNieveProv[0].value :
+            '0' }}
+        </h3>
+    </div>
+    <br>
+
+    <div style="column-count: 2;">
+        <h3> ESTADO DEL CIELO </h3>
+        <h3>
+            {{ datos[0].prediccion.dia[i].estadoCielo[0].descripcion ?
+            datos[0].prediccion.dia[i].estadoCielo[0].descripcion: 'Sin informacion' }}
+            <br>
+            <mat-icon>cloud_queue</mat-icon>
+            {{ datos[0].prediccion.dia[i].estadoCielo[0].value ? datos[0].prediccion.dia[i].estadoCielo[0].value: '0'}}
+        </h3>
+
+        <h3> VIENTO </h3>
+        <h3>
+            {{datos[0].prediccion.dia[i].viento[0].direccion ?
+            datos[0].prediccion.dia[i].viento[0].direccion: 'Sin informacion' }}
+            <br>
+            <mat-icon>air</mat-icon>
+            {{ datos[0].prediccion.dia[i].viento[0].velocidad }}
+        </h3>
+    </div>
+    <br>
+
+    <div style="column-count: 2;">
+        <h3> HUMEDAD MÁXIMA/MÍNIMA </h3>
+        <h3>
+            <mat-icon>contrast</mat-icon>
+            {{ datos[0].prediccion.dia[i].humedadRelativa.maxima }} / {{
+            datos[0].prediccion.dia[i].humedadRelativa.minima }}
+        </h3>
+
+        <h3> SENSACIÓN TÉRMICA MÁXIMA/MÍNIMA </h3>
+        <h3>
+            <mat-icon>water</mat-icon>
+            {{ datos[0].prediccion.dia[i].sensTermica.maxima }} / {{ datos[0].prediccion.dia[i].sensTermica.minima }}
+        </h3>
+    </div>
+
+    <app-detalles-horas [datos]="datos"></app-detalles-horas>
+
+
+</body>

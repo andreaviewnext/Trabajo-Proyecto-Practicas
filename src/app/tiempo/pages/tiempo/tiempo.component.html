@@ -1,0 +1,59 @@
+<header>
+    <div>
+        <br>
+        <h1>TIEMPO</h1>
+    </div>
+</header>
+
+<hr>
+
+<div class="row container">
+    <div class="col">
+        <form (ngSubmit)="buscar()" autocomplete="off">
+            <input type="text" name="nomMun" autocomplete="on" class="form-control" [(ngModel)]="nomMun"
+                placeholder="Buscar municipio..." (keyup.enter)="buscar()">
+        </form>
+    </div>
+</div>
+
+<hr>
+
+<div *ngIf="hayError" class="alert alert-danger" style="color: rgb(209, 69, 74);">
+    <h2> No se encontró nada con el término "{{nomMun}}"</h2>
+    <p> Por favor, recuerde introducir el nombre del municipio con la primera letra de cada palabra en Mayúscula</p>
+</div>
+<ng-container class="spinner-container" *ngIf="cargandoDatos; else elseTemplate">
+    <mat-spinner></mat-spinner>
+</ng-container>
+<ng-template #elseTemplate>
+
+    <body>
+        <div id="content">
+            <div class="box">
+                <h2> El tiempo en {{nomMun}} </h2>
+                <h4>
+                    <mat-icon>apartment</mat-icon>
+                    {{datosMunicipio[0].provincia}} provincia
+                </h4>
+            </div>
+            <table class="box">
+                <tr *ngFor="let item of datosMunicipio[0].prediccion.dia; let i = index ">
+                    <td>
+                        <a [routerLink]="['informacion/', datosMunicipio[0].id, i]">
+                            <mat-icon matListItemIcon>insert_invitation</mat-icon>
+                            <span> {{ item.fecha | date:'dd MMMM YYYY' }}</span>
+                        </a>
+                    </td>
+                    <td>
+                        {{ item.temperatura.maxima }}º
+                        <mat-icon>vertical_align_top</mat-icon>
+                    </td>
+                    <td>
+                        {{ item.temperatura.minima }}º
+                        <mat-icon>vertical_align_bottom</mat-icon>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</ng-template>

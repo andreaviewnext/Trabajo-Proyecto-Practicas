@@ -1,0 +1,77 @@
+<div>
+    <body background="calculadoraFondo.jpg">
+        <br>
+        <h1>CALCULADORA</h1>
+        <hr>
+    </body>
+</div>
+
+<div class="container">
+    <div>
+        <p-fieldset legend="Registro" [toggleable]="true">
+            <div *ngFor="let item of registro"> {{ item }} </div>
+        </p-fieldset>
+    </div>
+
+    <div>
+        <p-fieldset legend="Realizar las operaciones" [toggleable]="false">
+            <div id="calculadora">
+                <ng-container *ngIf="!hayError; else elseTemplate">
+                    <input type="text" [value]="resultado">
+
+                    <p-fieldset legend="científica" [toggleable]="true">
+                        <p-button label="^" (click)="operacion('^')"
+                            styleClass="p-button-rounded p-button-warning margin-left: 10px;"></p-button>
+                        <p-button label="%" (click)="operacion('%')"
+                            styleClass="p-button-rounded p-button-warning margin-left: 10px;"></p-button>
+                    </p-fieldset>
+                </ng-container>
+
+                <ng-template #elseTemplate>
+                    <input type="text" [value]="error" style="color: red;">
+
+                    <p-fieldset legend="científica" [toggleable]="true">
+                        <p-button label="^" (click)="operacion('^')"
+                            styleClass="p-button-rounded p-button-warning  margin-left: 10px;"></p-button>
+                        <p-button label="%" (click)="operacion('%')"
+                            styleClass="p-button-rounded p-button-warning  margin-left: 10px;"></p-button>
+                    </p-fieldset>
+                </ng-template>
+
+                <br><br>
+                <p-button label="7" (click)="agregarNumero('7')"
+                    styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>
+                <p-button label="8" (click)="agregarNumero('8')"
+                    styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>
+                <p-button label="9" (click)="agregarNumero('9')"
+                    styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>
+                <p-button label="/" (click)="operacion('/')" styleClass="p-button-rounded p-button-warning"></p-button>
+                <br><br>
+                <p-button label="4" (click)="agregarNumero('4')"
+                    styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>
+                <p-button label="5" (click)="agregarNumero('5')"
+                    styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>
+                <p-button label="6" (click)="agregarNumero('6')"
+                    styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>
+                <p-button label="*" (click)="operacion('*')" styleClass="p-button-rounded p-button-warning"></p-button>
+                <br><br>
+                <p-button label="1" (click)="agregarNumero('1')"
+                    styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>
+                <p-button label="2" (click)="agregarNumero('2')"
+                    styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>
+                <p-button label="3" (click)="agregarNumero('3')"
+                    styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>
+                <p-button label="-" (click)="operacion('-')" styleClass="p-button-rounded p-button-warning"></p-button>
+                <br><br>
+
+                <p-button label="0" (click)="agregarNumero('0')"
+                    styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>
+                <p-button label="C" (click)="limpiar()" styleClass="p-button-rounded p-button-secondary"></p-button>
+                <p-button label="=" (click)="calcular()" styleClass="p-button-rounded p-button-warning"></p-button>
+                <p-button label="+" (click)="operacion('+')" styleClass="p-button-rounded p-button-warning"></p-button>
+
+            </div>
+        </p-fieldset>
+    </div>
+
+</div>
